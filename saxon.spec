@@ -35,7 +35,7 @@
 Summary:        Java XPath, XSLT 2.0 and XQuery implementation
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        9.3.0.4
-Release:        11.13%{?dist}
+Release:        11.14%{?dist}
 # net.sf.saxon.om.XMLChar is from ASL-licensed Xerces
 # net/sf/saxon/option/jdom/ is MPLv1.1
 # net/sf/saxon/serialize/codenorm/ is UCD
@@ -77,7 +77,7 @@ those specifications and nearly all the optional features.
 
 %package        manual
 Summary:        Manual for %{pkg_name}
-Requires:       maven30-runtime
+Requires:       %{?scl_prefix}runtime
 
 %description    manual
 Manual for %{pkg_name}.
@@ -106,7 +106,7 @@ Utility scripts for %{pkg_name}.
 
 %prep
 %setup -q -c -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 unzip -q %{SOURCE6}
@@ -133,7 +133,7 @@ cp %{SOURCE8} %{SOURCE9} .
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 mkdir -p build/classes
 echo "config=net.sf.saxon.Configuration
@@ -147,7 +147,7 @@ ant \
 
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 rm -rf $RPM_BUILD_ROOT
 
@@ -205,6 +205,9 @@ sed -i -e 's/saxon-he/saxon/' $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-%{pkg_name}.pom
 
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 9.3.0.4-11.14
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 9.3.0.4-11.13
 - maven33 rebuild
 
