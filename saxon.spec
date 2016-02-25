@@ -35,7 +35,7 @@
 Summary:        Java XPath, XSLT 2.0 and XQuery implementation
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        9.3.0.4
-Release:        11.14%{?dist}
+Release:        11.15%{?dist}
 # net.sf.saxon.om.XMLChar is from ASL-licensed Xerces
 # net/sf/saxon/option/jdom/ is MPLv1.1
 # net/sf/saxon/serialize/codenorm/ is UCD
@@ -205,6 +205,9 @@ sed -i -e 's/saxon-he/saxon/' $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-%{pkg_name}.pom
 
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 9.3.0.4-11.15
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 9.3.0.4-11.14
 - maven33 rebuild #2
 
